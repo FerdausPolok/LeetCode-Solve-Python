@@ -1,39 +1,37 @@
-
-
-def solve(nums):
+def solve(nums,):
 
     result = []
-    gunfol = 1
-    gunfol2 = 1
+    pre = []
+    post= [""] * len(nums)
+
+    f=1
+    l=1
+    length = len(nums)
+    for i,v in enumerate(nums):
+        f *= v
+        pre.append(f)
+        l *= nums[length-1]
+        post[length-1] = l
+        length-=1
+    print("pre: ",pre)
+    print("post: ",post)
 
     for i,v in enumerate(nums):
-        if i>=0 and nums[i-1]== 0 and nums[i] ==0:
-            gunfol=0
-            print("in")
 
-        if v == 0:
-            gunfol2 = 0
-            continue
+         if i ==0:
+             result.append(post[1])
+         elif i == len(nums)-1:
+             result.append(pre[len(nums)-2])
+         else:
+             result.append(pre[i-1] * post[i+1])
 
-        gunfol *= v
 
-    print(gunfol)
-    print(gunfol2)
-
-    for i, v in enumerate(nums):
-
-        if gunfol2 == 0:
-            if v !=0:
-                result.append(int(0))
-            else:
-                result.append(int(gunfol))
-        else:
-            result.append(int(gunfol / v))
-
-    print(nums)
-    print(result)
+    return result
 
 
 
 
-solve([[-1,1,0,-3,3]])
+
+
+
+solve([1,2,3,4])
