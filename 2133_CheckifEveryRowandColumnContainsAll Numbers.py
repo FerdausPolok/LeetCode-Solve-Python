@@ -17,7 +17,7 @@ def solve(matrix):
                 check.remove(j)
 
     if result == False:
-        
+
         print(result)
         return result
 
